@@ -4,7 +4,7 @@ namespace App\Controller;
 use System\Controller;
 use System\Helpers\Session;
 use App\Model\UserModel;
-use PhpOffice\PhpSpreadsheet\IOFactory;
+use App\Services\ExcelImportService;
 
 class Model extends Controller
 {
@@ -37,63 +37,42 @@ class Model extends Controller
 
     }
 
-    function training()
+    public function training()
     {
         $this->load->view('pages/header');
         $this->load->view('user/training');
-
+    
         if (isset($_POST['add'])) {
-
             $file = $_FILES['file'];
             $fileName = $file['name'];
             $fileTmpPath = $file['tmp_name'];
             $fileType = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
-        
-            if (isset($_FILES['file']) && $_FILES['file']['error'] === UPLOAD_ERR_OK) {
-        
-                $file = $_FILES['file'];
-                $fileType = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
-        
-                if ($fileType == 'xlsx' || $fileType == 'xls') {
-        
-                    $uploadDir = 'uploads/';
-                    $filePath = $uploadDir . basename($file['name']);
-        
-                    if (move_uploaded_file($file['tmp_name'], $filePath)) {
-        
-                        echo "File uploaded successfully!<br>";
-        
-                        $spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load($filePath);
-                        $sheet = $spreadsheet->getActiveSheet();
-        
-                        $data = [];
-                        foreach ($sheet->getRowIterator() as $row) {
-                            $cellIterator = $row->getCellIterator();
-                            $cellIterator->setIterateOnlyExistingCells(false);
-        
-                            $rowData = [];
-                            foreach ($cellIterator as $cell) {
-                                $rowData[] = $cell->getValue();
-                            }
-                            $data[] = $rowData;
-                        }
-        
-                        echo '<pre>';
-                        print_r($data);
-                        echo '</pre>';
-        
+    
+            if ($file['error'] === UPLOAD_ERR_OK) {
+    
+                $uploadDir = 'uploads/';
+                $filePath = $uploadDir . basename($fileName);
+    
+                if (move_uploaded_file($fileTmpPath, $filePath)) {
+    
+                    if ($fileType == 'xlsx' || $fileType == 'xls') {
+                        $service = new ExcelImportService();
+                        $data = $service->process($filePath);
                     } else {
-                        echo "Error uploading file.";
+                        echo "Unsupported file type";
+                        return;
                     }
-        
+
+    
                 } else {
-                    echo "Invalid file type.";
+                    echo "Failed to move uploaded file.";
                 }
+    
             } else {
                 echo "No file uploaded or upload error.";
             }
         }
-        
-
     }
-}
+
+}    
+
