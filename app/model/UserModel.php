@@ -31,8 +31,20 @@ class UserModel extends Model
 
     public function fetchModel()
     {
-        $models = $this->select('model');
+        $models = $this->select('data_set');
         return $models;
+    }
+
+    public function insertTrainingData($insertData)
+    {
+        $this->insert('training_data', $insertData);
+    }
+
+    public function findLogin($email, $password)
+    {
+        return $this->where('email', $email)
+            ->where('password', $password)
+            ->first('user');
     }
 
 }

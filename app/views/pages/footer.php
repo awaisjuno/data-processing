@@ -1,42 +1,58 @@
-
+<!-- Footer -->
 <footer>
     <div class="container">
-        <div class="footer-content">
-            <div>
-                <span class="footer-logo">Colab</span>
-                <p style="color: #666; max-width: 280px; line-height: 1.6;">The minimalist project management tool for focused teams.</p>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h3>Techlynxx</h3>
+                <p>The data processing platform for AI/ML teams and researchers.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
             </div>
-            <div class="footer-links">
+
+            <div class="footer-col">
                 <h4>Product</h4>
-                <a href="#">Features</a>
-                <a href="#">Pricing</a>
-                <a href="#">Integrations</a>
-                <a href="#">Updates</a>
+                <ul>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#how-it-works">How It Works</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                    <li><a href="#">Updates</a></li>
+                </ul>
             </div>
-            <div class="footer-links">
-                <h4>Company</h4>
-                <a href="#">About</a>
-                <a href="#">Careers</a>
-                <a href="#">Blog</a>
-            </div>
-            <div class="footer-links">
+
+            <div class="footer-col">
                 <h4>Resources</h4>
-                <a href="#">Help Center</a>
-                <a href="#">Community</a>
-                <a href="#">Tutorials</a>
+                <ul>
+                    <li><a href="#">Documentation</a></li>
+                    <li><a href="#">Tutorials</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Community</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Legal</a></li>
+                </ul>
             </div>
         </div>
+
         <div class="footer-bottom">
-            <div>© 2023 Colab. All rights reserved.</div>
-            <div>
-                <a href="#" style="color: #666; margin-left: 20px;">Privacy</a>
-                <a href="#" style="color: #666; margin-left: 20px;">Terms</a>
+            <p>&copy; 2025 Techlynxx. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Cookie Policy</a>
             </div>
         </div>
     </div>
 </footer>
-
-<script src="js/layout.js"></script>
-
 </body>
 </html>

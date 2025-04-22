@@ -5,8 +5,9 @@ use System\Controller;
 use System\Helpers\Session;
 use App\Model\UserModel;
 use App\Services\ExcelImportService;
+use App\Services\TrainingDataService;
 
-class Model extends Controller
+class DataSet extends Controller
 {
     private $userModel;
     public function __construct()
@@ -18,23 +19,9 @@ class Model extends Controller
 
     public function index()
     {
-        $models = $this->userModel->fetchModel();
-        $this->load->view('pages/header');
-        $this->load->view('user/model', ['models' => $models]);
-
-        if(isset($_POST['add'])) {
-
-            $data = array(
-                'model_name' => $this->post('model_name'),
-                'model_description' => $this->post('model_description'),
-                'create_date' => date('Y-m-d H:i:s')
-            );
-
-            //Calling Mode to Insert
-            $this->userModel->createModel($data);
-
-        }
-
+        $this->load->view('panel/sidebar');
+        $dataset = $this->userModel->fetchModel();
+        $this->load->view('panel/dataset',  ['models' => $dataset]);
     }
 
     public function training()
@@ -56,8 +43,21 @@ class Model extends Controller
                 if (move_uploaded_file($fileTmpPath, $filePath)) {
     
                     if ($fileType == 'xlsx' || $fileType == 'xls') {
+
                         $service = new ExcelImportService();
                         $data = $service->process($filePath);
+
+
+                        //Save Data in the Database
+                        $trainingService = new TrainingDataService();
+                        $saveData = $trainingService->importAndSave($filePath);
+
+                        if ($saveData) {
+                            echo "<p style='color:green;'>Training data saved successfully.</p>";
+                        } else {
+                            echo "<p style='color:red;'>No valid data found in file.</p>";
+                        }
+
                     } else {
                         echo "Unsupported file type";
                         return;

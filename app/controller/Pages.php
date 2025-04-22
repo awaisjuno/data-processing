@@ -9,5 +9,6 @@ class Pages extends Controller
     {
         $this->load->view('pages/header');
         $this->load->view('pages/landing');
+        $this->load->view('pages/footer');
     }
 }
