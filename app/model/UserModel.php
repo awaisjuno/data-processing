@@ -35,6 +35,12 @@ class UserModel extends Model
         return $models;
     }
 
+    public function fetchvalues($code)
+    {
+        return $this->where('code', $code)
+            ->get('training_data');
+    }
+
     public function insertTrainingData($insertData)
     {
         $this->insert('training_data', $insertData);
@@ -45,6 +51,11 @@ class UserModel extends Model
         return $this->where('email', $email)
             ->where('password', $password)
             ->first('user');
+    }
+
+    public function insertDataSet($data)
+    {
+        $this->insert('data_set', $data);
     }
 
 }

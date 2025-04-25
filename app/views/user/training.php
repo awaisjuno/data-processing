@@ -4,7 +4,7 @@
     <div class="row">
 
         <!--Add New Model-->
-        <div class="panel panel-default">
+        <div class="panel panel-default space-top">
 
             <div class="panel-heading">
                 <h2>Add New File</h2>
@@ -40,6 +40,46 @@
             </div>
 
         </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3>Training Data</h3>
+            </div>
+
+        <div class="panel-body">
+
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Row ID</th>
+                            <th>Label</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php if (!empty($data)) : ?>
+                            <?php foreach ($data as $row) : ?>
+                                <tr>
+                                    <td><?= htmlspecialchars($row['row_id']) ?></td>
+                                    <td><?= htmlspecialchars($row['label']) ?></td>
+                                    <td>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        <?php else : ?>
+                            <tr><td colspan="5">No training data found.</td></tr>
+                        <?php endif; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="panel-footer text-right">
+            Last updated: <?= date('Y-m-d H:i:s') ?>
+        </div>
+
 
     </div>
 

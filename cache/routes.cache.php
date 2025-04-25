@@ -1,5 +1,5 @@
 <?php return array (
-  'hash' => '343d7038ca1653823d1c20e6b7f8741a',
+  'hash' => '87808a712baae41b6d37695718abf017',
   'routes' => 
   array (
     'GET' => 
@@ -28,6 +28,22 @@
         array (
         ),
       ),
+      '/dashboard' => 
+      array (
+        'controller' => 'User',
+        'method' => 'dashboard',
+        'middleware' => 
+        array (
+        ),
+      ),
+      '/data_set/{id}' => 
+      array (
+        'controller' => 'DataSet',
+        'method' => 'training',
+        'middleware' => 
+        array (
+        ),
+      ),
     ),
     'POST' => 
     array (
@@ -43,6 +59,14 @@
       array (
         'controller' => 'User',
         'method' => 'signup',
+        'middleware' => 
+        array (
+        ),
+      ),
+      '/data_set/{id}' => 
+      array (
+        'controller' => 'DataSet',
+        'method' => 'training',
         'middleware' => 
         array (
         ),

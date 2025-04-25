@@ -4,6 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Techlynxx Dashboard</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> 
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -247,31 +257,6 @@
             font-weight: 700;
         }
 
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            padding: 10px 18px;
-            border-radius: 10px;
-            font-weight: 500;
-            font-size: 0.95rem;
-            cursor: pointer;
-            transition: all 0.2s;
-            border: none;
-            gap: 8px;
-        }
-
-        .btn-primary {
-            background: var(--primary);
-            color: white;
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-        }
-
-        .btn-primary:hover {
-            background: var(--primary-dark);
-            transform: translateY(-1px);
-            box-shadow: 0 4px 6px rgba(79, 70, 229, 0.2);
-        }
-
         /* Modern Stats Cards */
         .stats-grid {
             display: grid;
@@ -464,7 +449,6 @@
 
             .sidebar-menu li a i {
                 margin-right: 0;
-                font-size: 1.2rem;
             }
 
             .main-content {
@@ -517,6 +501,25 @@
             font-size: 30px;
             text-transform: uppercase;
         }
+
+
+        .dashboard-content {
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .dashboard-content {
+                padding: 0 15px;
+            }
+        }
+
+        .space-top {
+            margin-top: 30px;
+        }
+
     </style>
 </head>
 <body>
@@ -559,10 +562,10 @@
                 <span class="notification-badge">3</span>
             </div>
             <div class="user-profile">
-                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User">
+                <img src="https://avatars.githubusercontent.com/u/34066051?v=4" alt="User">
                 <div class="user-info">
-                    <h4>Alex Johnson</h4>
-                    <p>Data Scientist</p>
+                    <h4>Awais Juno</h4>
+                    <p>Developer</p>
                 </div>
             </div>
         </div>

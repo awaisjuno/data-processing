@@ -16,7 +16,7 @@ class TrainingDataService
         $this->userModel = new UserModel();
     }
 
-    public function importAndSave(string $filePath): bool
+    public function importAndSave(string $filePath, $code)
     {
         $data = $this->excelService->process($filePath);
 
@@ -31,7 +31,9 @@ class TrainingDataService
             if (!empty($label) && !empty($synonyms)) {
                 $insertData = [
                     'label' => $label,
-                    'data' => implode(', ', $synonyms)
+                    'data' => implode(', ', $synonyms),
+                    'model_id' => 3,
+                    'code' => $code
                 ];
 
                 $this->userModel->insertTrainingData($insertData);

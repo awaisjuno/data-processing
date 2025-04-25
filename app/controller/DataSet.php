@@ -22,12 +22,28 @@ class DataSet extends Controller
         $this->load->view('panel/sidebar');
         $dataset = $this->userModel->fetchModel();
         $this->load->view('panel/dataset',  ['models' => $dataset]);
+
+        if(isset($_POST['btn'])) {
+
+            //Fetch From Inputs
+            $data = array(
+                'set_name' => $this->post('data_set'),
+                'set_description' => $this->post('dataset_descrption'),
+                'code' => uniqid(),
+                'user_id' => 2,
+            );
+
+            //Calling Model to Insert
+            $run = $this->userModel->insertDataSet($data);
+
+        }
     }
 
-    public function training()
+    public function training($code)
     {
-        $this->load->view('pages/header');
-        $this->load->view('user/training');
+        $values = $this->userModel->fetchvalues($code);
+        $this->load->view('panel/sidebar');
+        $this->load->view('user/training', ['data' => $values]);
     
         if (isset($_POST['add'])) {
             $file = $_FILES['file'];
@@ -50,7 +66,7 @@ class DataSet extends Controller
 
                         //Save Data in the Database
                         $trainingService = new TrainingDataService();
-                        $saveData = $trainingService->importAndSave($filePath);
+                        $saveData = $trainingService->importAndSave($filePath, $code);
 
                         if ($saveData) {
                             echo "<p style='color:green;'>Training data saved successfully.</p>";
